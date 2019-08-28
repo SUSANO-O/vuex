@@ -1,10 +1,10 @@
 <template>
   <div class="hello">
-    <h1>favoritos</h1>
+      <h1>Archivo</h1>
     <ul>
       <tr v-for="peliculas of filteredItems" :key="peliculas.id">
         <td>{{peliculas.nombre}} -{{peliculas.director}}-{{peliculas.clasificacion}}</td>
-        <button @click="addsItem(peliculas.id)">filter</button>
+        <button @click="addsItems(peliculas.id)" class="rm">remove</button>
       </tr>
     </ul>
   </div>
@@ -21,27 +21,27 @@ export default {
     };
   },
   mounted() {
-    //this.state.selected = this.pelicula;
+    //t  his.state.selected = this.pelicula;
   },
   async created() {
     this.id = "";
-    console.log("created", this.$store.state.peliculasAbout.length);
+    console.log("created", this.$store.state.peliculasArchivo.length);
     try {
-      if (this.$store.state.peliculasAbout.length) {
-        this.pelicula = this.$store.state.peliculasAbout;
+      if (this.$store.state.peliculasArchivo.length) {
+        this.pelicula = this.$store.state.peliculasArchivo;
       }
     } catch (e) {
       console.error(e);
     }
   },
   methods: {
-    ...mapActions(["addHome"]),
-    addsItem(id) {
+    ...mapActions(["removeArchivo"]),
+    addsItems(id) {
       this.id = id;
       //return this.selected.filter( o => o.id !== id);
       // console.log(this.selected);
-      const newi = this.pelicula.find(o => o.id === this.id);
-      this.addHome(newi);
+
+      this.removeArchivo(this.pelicula.find(o => o.id === this.id));
     }
   },
   computed: {
@@ -57,4 +57,7 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+rm {
+  background-color: aqua;
+}
 </style>

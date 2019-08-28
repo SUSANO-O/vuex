@@ -1,7 +1,10 @@
 <template>
   <div class="container">
+    
     <ul>
       <h1 class="title">Hola clasifica tus peliculas</h1>
+      
+      <input type="text" class="container" v-model="search" placeholder="search" />
       <table class="table table-bordered table-dark">
         <thead>
           <tr>
@@ -40,7 +43,7 @@ export default {
   data() {
     return {
       pelicula: [],
-      //selected: [],
+      search: "",
       id: ""
     };
   },
@@ -91,6 +94,11 @@ export default {
       //console.log(this.$store.state.peliculas)
       this.pelicula = this.pelicula.filter(o => o.id !== this.id);
       return this.pelicula;
+    },
+    filteredItems(){
+      return this.pelicula.filter((peliculas) =>{
+        return peliculas.nombre.match(this.search.toUpperCase(1))
+      })
     }
   }
 };
@@ -110,4 +118,5 @@ export default {
   margin-top: 5px;
   margin-left: 20px;
 }
+
 </style>

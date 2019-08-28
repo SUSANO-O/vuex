@@ -1,19 +1,32 @@
 <template>
- <v-simple-table dark>
-  <div class="hello">
+  <div class="container">
     <ul>
-      <h1>Hola clasifica tus peliculas</h1>
+      <h1 class="title">Hola clasifica tus peliculas</h1>
+      <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th scope="col">nombre</th>
+            <th scope="col">director</th>
+            <th scope="col">clasificacion</th>
+            <th scope="col">favorito</th>
+            <th scope="col">archivo</th>
+          </tr>
+        </thead>
+        <tr v-for="peliculas of filteredItems" :key="peliculas.id">
+          <td>{{peliculas.nombre}}</td>
+          <td>{{peliculas.director}}</td>
+          <td>{{peliculas.clasificacion}}</td>
 
-      <tr v-for="peliculas of filteredItems" :key="peliculas.id">
-        <td>{{peliculas.nombre}}</td>
-        <td>{{peliculas.director}}</td>
-        <td>{{peliculas.clasificacion}}</td>
-        <button @click="addsItem(peliculas.id)">Favoritos</button>
-        <button @click="addsItems(peliculas.id)">Archivar</button>
-      </tr>
+          <td>
+            <button @click="addsItem(peliculas.id)" id="button" class="btn btn-primary">Favoritos</button>
+          </td>
+          <td>
+            <button @click="addsItems(peliculas.id)" id="button" class="btn btn-warning">Archivar</button>
+          </td>
+        </tr>
+      </table>
     </ul>
   </div>
-   </v-simple-table>
 </template>
 
 <script>
@@ -85,4 +98,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.title {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #171c49;
+  margin-bottom: 50px;
+}
+#button {
+  margin-top: 5px;
+  margin-left: 20px;
+}
 </style>

@@ -1,11 +1,24 @@
 <template>
-  <div class="hello">
-      <h1>Archivo</h1>
+  <div class="container">
+    <h1 class="title">Archivo</h1>
     <ul>
-      <tr v-for="peliculas of filteredItems" :key="peliculas.id">
-        <td>{{peliculas.nombre}} -{{peliculas.director}}-{{peliculas.clasificacion}}</td>
-        <button @click="addsItems(peliculas.id)" class="rm">remove</button>
-      </tr>
+      <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th scope="col">nombre</th>
+            <th scope="col">director</th>
+            <th scope="col">clasificacion</th>
+          </tr>
+        </thead>
+        <tr v-for="peliculas of filteredItems" :key="peliculas.id">
+          <td>{{peliculas.nombre}}</td>
+          <td>{{peliculas.director}}</td>
+          <td>{{peliculas.clasificacion}}</td>
+           <td>
+          <button @click="addsItems(peliculas.id)"  id="button" class="btn btn-danger">Eliminar</button>
+           </td>
+        </tr>
+      </table>
     </ul>
   </div>
 </template>
@@ -57,7 +70,16 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-rm {
-  background-color: aqua;
+.title {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #171c49;
+  margin-bottom: 50px;
+}
+#button {
+  margin-top: 5px;
+  margin-left: 20px;
 }
 </style>

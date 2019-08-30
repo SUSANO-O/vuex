@@ -1,9 +1,8 @@
 <template>
   <div class="container">
-    
     <ul>
       <h1 class="title">Hola clasifica tus peliculas</h1>
-      
+
       <input type="text" class="container" v-model="search" placeholder="search" />
       <table class="table table-bordered table-dark">
         <thead>
@@ -34,6 +33,7 @@
 
 <script>
 import axios from "axios";
+import _ from 'lodash';
 const baseURL = "http://localhost:3000/peliculas";
 import { mapActions } from "vuex";
 
@@ -95,10 +95,11 @@ export default {
       this.pelicula = this.pelicula.filter(o => o.id !== this.id);
       return this.pelicula;
     },
-    filteredItems(){
-      return this.pelicula.filter((peliculas) =>{
-        return peliculas.nombre.match(this.search.toUpperCase(1))
-      })
+    filteredItems() {
+      return this.pelicula.filter(peliculas => {
+        console.log(peliculas.nombre, this.search)
+        return (_.includes(peliculas.nombre.toLowerCase(),this.search.toLowerCase()));
+      });
     }
   }
 };
@@ -118,5 +119,4 @@ export default {
   margin-top: 5px;
   margin-left: 20px;
 }
-
 </style>
